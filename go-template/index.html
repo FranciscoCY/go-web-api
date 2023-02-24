@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    {{ template "header" }}
+
+    <h1>Hola HTML - GOLANG</h1>
+    <hr/>
+    <h3>Usuarios:</h3>
+    <p>Hola:  {{ .UserName }}</p>
+    <p>Edad: {{ .Edad }}</p>
+
+    <!-- Operadores Lógicos
+        not !
+        and &&
+        or ||
+    -->
+    {{ if not .Activo }}
+        <p>Usuario Activo</p>
+    {{ else }}
+        <p>Usuario No Activo</p>
+    {{ end }}
+
+    {{ if (and .Activo .Admin) }}
+        <p>Eres Administrador</p>
+    {{ else }}
+        <p>No Eres Administrador</p>
+    {{ end }}
+
+    <!-- Operadores condicionales
+        eq ==
+        ne !=
+        lt <
+        le <=
+        >  gt
+        >= ge
+    -->
+
+    {{ if gt .Edad 22 }}
+        <p>El usuario tiene más de 22 años</p>
+    {{ end }}
+
+    <!--Variables-->
+    {{ with $valor := "Mis Cursos"}}
+        <p>{{ $valor }}</p>
+    {{ end }}
+
+    <ul>
+        {{ range .Cursos}}
+            <li>{{ .Nombre }}</li>
+        {{ end }}
+    </ul>
+
+    <!--Funciones-->
+
+    {{ saludar "Francisco" }}
+
+    <hr/>
+    {{ template "footer" }}
+
+</body>
+</html>
